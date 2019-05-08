@@ -1,0 +1,40 @@
+
+
+Assume solver of a leaf returns and puts current solution on bb (right now, solver calls set_solved on
+the unknown)
+
+New node - place in BT before updateL:
+
+1) get solution or solution pair from dd  (a kequation) (either one or two solutions but with same deps)
+
+2) list all dependencies of solution (eg [ unk1, unk4, unk3] )
+
+2a)  initialize empty ancestor_list dictionary ...  ( { unk:[ancestors], unk2:[ancestors] } )
+
+3) using list(2):
+
+    3.1) find lowest node in graph DG that belongs to list(2)
+        (lowest refers to furthest from tree root)
+    3.2) get corresponding nodes of MG (full solution set for lowest sdeps)
+    3.3) list ancestors of each solution for lowest dep  --> {sdep : [ancestors]}
+    3.4) for each sdep, ancestor list (3.3):
+           if this ancestor list does not 
+
+3a) Generate list of all ancestors (combining lists (3.3))
+
+4) for each solution equation  (1 or 2 eqns total):
+
+    
+
+
+        4.1) generate a solution_equation (frmrly solution_with_notations) following up the tree for other deps
+        
+    else: 
+    
+        5.2) for each dep not belonging to (4) 
+        
+        
+        
+ ---------       
+First consider the Multiplicity Graph MG. 
+  For each solved unk, keep track of 
