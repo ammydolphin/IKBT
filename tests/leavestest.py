@@ -49,7 +49,7 @@ from ikbtleaves.updateL import *
 
 import b3 as b3          # behavior trees
 
-os.chdir('../')            # change to project dir.
+#os.chdir('../')            # change to project dir.
 
 
 ((th_1, th_2, th_3, th_4, th_5, th_6)) = sp.symbols(('th_1', 'th_2', 'th_3', 'th_4', 'th_5', 'th_6'))
@@ -201,8 +201,7 @@ if __name__ == '__main__':
         #HTMLTestRunner.main()
        # output to a file
        #  Directory Name of this Project:
-        projdir = 'IKBT/tests/' # customize to your setup
-        projdir = 'ikbtrefactor/tests/' # customize to your setup
+        projdir = 'tests/' #  
         testfname =  projdir + 'IKBT_testreport.html'
         fp = open(testfname, 'w')
 
