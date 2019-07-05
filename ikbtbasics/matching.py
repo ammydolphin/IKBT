@@ -128,7 +128,7 @@ def mark_off(notation_set, solution_nodes):
 def matching_func(notation_collections, solution_nodes):
     notation_d, max_len = sort_by_length(notation_collections)
     if(max_len) < 1:
-        print 'matching.py: bad notation collection'
+        print '\n\nmatching.py: No equations have been solved!  Giving up.'
         quit()
     start_list = notation_d[max_len] # get lists with most variables
     

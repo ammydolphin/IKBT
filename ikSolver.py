@@ -233,7 +233,8 @@ sc_tan = b3.Sequence([b3.OrNode([tanSol, scSol]), rankNode])
 worktools = b3.Priority([algSol, sc_tan, Simu_Eqn_Sol, sacSol, x2z2_Solver])
 
 #  we have to ID the SOA cases to generate equations for algSol to work on SOA variables
-subtree = b3.RepeatUntilSuccess(b3.Sequence([asgn, sumOfAnglesID, worktools]), 6)
+#subtree = b3.RepeatUntilSuccess(b3.Sequence([asgn, sumOfAnglesID, worktools]), 6)
+subtree = b3.Sequence([asgn, sumOfAnglesID, worktools])
 solveRoutine = b3.Sequence([sub_trans, subtree,  updateL, compDetect])
 
 topnode = b3.RepeatUntilSuccess(solveRoutine, 7) #max 10 loops
@@ -285,6 +286,24 @@ if not os.path.isdir(logdir):  # if this doesn't exist, create it.
     #ikbt.log_file = open(logdir + 'Olson_node_log.txt', 'w')
     #ikbt.log_file.write('Olson Node Log --\n')
 
+if (robot == 'DvrkPSM'):  # special debug options 
+    
+    T = True
+    F = False
+    sacSol.BHdebug = F
+    sacID.BHdebug = F
+    sacSolver.BHdebug = F
+    scSol.BHdebug = F
+    scID.BHdebug = F
+    scSolver.BHdebug = F
+    x2z2_Solver.BHdebug = F
+    
+    sc_tan.BHdebug = F
+    SimuEqnID.BHdebug = F
+    Simu_Eqn_Sol.BHdebug = F
+    
+    
+    
 #if (robot == 'Puma' ):  # Puma debug setup
     #ikbt.log_flag = 2  # log exits:  1=SUCCESS only, 2=BOTH S,F
     #ikbt.log_file = open(logdir + 'BT_Puma_node_log.txt', 'w')
@@ -358,6 +377,7 @@ if TEST_DATA_GENERATION:
     with open(name,'wb') as pf:
         pickle.dump( [R, unks], pf)
     quit()
+
 
 
 print R.notation_collections

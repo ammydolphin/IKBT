@@ -142,10 +142,10 @@ class x2z2_id_solve(b3.Action):    #  This time we combine into a single ID/Solv
         
         if(self.BHdebug):
             print "x2z2, running: ", self.Name
-            print 'len(3p): ', len(more_unk)
-            print 'len(2): ', len(two_unk)
-            print 'len(1): ', len(one_unk)
-            print "currently looking at: ", u.symbol
+            print '   len(3p): ', len(more_unk)
+            print '   len(2): ', len(two_unk)
+            print '   len(1): ', len(one_unk)
+            #print "x2z2: currently looking at: ", u.symbol
             #sp.pprint(Tm.Ts) 
         
         solved = False    
@@ -157,7 +157,7 @@ class x2z2_id_solve(b3.Action):    #  This time we combine into a single ID/Solv
         
         # for debugging Puma, comment out for others
         # note: x2y2 is very costly, and less likely to be used
-        if not u.symbol == th_3:
+        if R.name == 'Puma' and not u.symbol == th_3 :
             return b3.FAILURE
 
             
@@ -212,7 +212,8 @@ class x2z2_id_solve(b3.Action):    #  This time we combine into a single ID/Solv
                 break
 
         if not found:
-            print "x2y2 did not find suitable eqns"
+            if self.BHdebug:
+                print "x2y2 did not find suitable eqns"
             return b3.FAILURE
         
         # find the current unknown
@@ -220,7 +221,8 @@ class x2z2_id_solve(b3.Action):    #  This time we combine into a single ID/Solv
             if temp_r.has(u.symbol):
                 unknown = u
                 unk = u.symbol
-                if self.BHdebug: print ' The unknown variable is: ', unk
+                if self.BHdebug: 
+                    print ' The unknown variable is: ', unk
             
         if not unknown.solved:
             if (temp_r.has(sp.sin(unk)) and temp_r.has(sp.cos(unk))):
